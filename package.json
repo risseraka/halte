@@ -1,0 +1,27 @@
+{
+  "name": "halte",
+  "version": "0.0.1",
+  "description": "HAL template engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/risseraka/halte.git"
+  },
+  "keywords": [
+    "hal",
+    "template",
+    "engine"
+  ],
+  "author": "Adrien Risser",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/risseraka/halte/issues"
+  },
+  "homepage": "https://github.com/risseraka/halte#readme",
+  "dependencies": {
+    "halte": "^0.0.1"
+  }
+}
