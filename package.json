@@ -1,6 +1,6 @@
 {
   "name": "halte",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "HAL+json express template \"engine\"",
   "main": "index.js",
   "scripts": {
