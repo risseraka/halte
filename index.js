@@ -11,10 +11,6 @@ exports = module.exports = (app, options = {}) => {
     function render(file, data) {
       if (!data) return obj => render(file, obj);
 
-      if (setContentType) {
-        res.set('Content-Type', 'application/hal+json');
-      }
-
       const filePath = path.join(dir, `${file.replace(/\.js$/, '')}.js`);
 
       const content = cache && internalCache[filePath] ?
@@ -55,7 +51,14 @@ exports = module.exports = (app, options = {}) => {
       try {
         const result = render(file, data);
 
-        res.json(result);
+        if (setContentType) {
+          if (typeof result === 'object') {
+            res.set('Content-Type', 'application/hal+json');
+            return res.json(result);
+          }
+        }
+
+        return res.send(result);
       } catch (e) {
         next(e);
       }
