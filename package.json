@@ -1,6 +1,6 @@
 {
   "name": "halte",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "HAL+json express template \"engine\"",
   "main": "index.js",
   "scripts": {
@@ -22,5 +22,6 @@
   },
   "homepage": "https://github.com/risseraka/halte#readme",
   "dependencies": {
+    "jeste": "0.0.1"
   }
 }
