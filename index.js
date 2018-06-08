@@ -13,9 +13,18 @@ exports = module.exports = (app, options = {}) => {
 
       const filePath = path.join(dir, `${file.replace(/\.js$/, '')}.js`);
 
-      const content = cache && internalCache[filePath] ?
-              internalCache[filePath] :
-              (internalCache[filePath] = fs.readFileSync(filePath));
+      let content;
+      if (cache && internalCache[filePath]) {
+        content = internalCache[filePath];
+      } else {
+        try {
+          content = fs.readFileSync(filePath);
+        } catch (e) {
+          console.error('[halte] No such file:', filePath);
+          return data;
+        }
+        internalCache[filePath] = content;
+      }
 
       const context = Object.assign(
         {
@@ -47,9 +56,9 @@ exports = module.exports = (app, options = {}) => {
       return context.result;
     };
 
-    res.hal = (file, data) => {
+    res.hal = (file, data = {}) => {
       try {
-        const result = render(file, data);
+        const result = render(file + (req.accepts(['json', 'html']) === 'html' ? '.html' : ''), data);
 
         if (setContentType) {
           if (typeof result === 'object') {
